@@ -1,6 +1,8 @@
 import React from "react";
 import { BiShoppingBag } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
+import { addToCart } from "../redux/homeSlice";
+import { useDispatch } from "react-redux";
 function ProductsCard({ product }) {
   const navigate = useNavigate();
   const _id = product.title;
@@ -15,6 +17,7 @@ function ProductsCard({ product }) {
       }
     })
   }
+  const dispatch = useDispatch();
   return (
     <div className="group relative">
       <div onClick={handleDetailsClick} className="w-full rounded-t-2xl h-96 cursor-pointer overflow-hidden">
@@ -35,7 +38,14 @@ function ProductsCard({ product }) {
             <p className="line-through text-gray-400">${product.oldPrice}</p>
             <p className="p-1 font-semibold text-[16px]">${product.price}</p>
           </div>
-          <p className="absolute z-20 w-[100px] flex items-center gap-1 top-0 right-0 text-gray-500 hover:text-black transform -translate-x-6 group-hover:translate-x-0 transition-transform cursor-pointer py-1 duration-500">
+          <p onClick={() => dispatch(addToCart({
+            _id: product._id,
+            title: product.title,
+            image: product.image,
+            price: product.price,
+            quantity: 1,
+            description:product.description
+          }))} className="absolute z-20 w-[100px] flex items-center gap-1 top-0 right-0 text-gray-500 hover:text-black transform -translate-x-6 group-hover:translate-x-0 transition-transform cursor-pointer py-1 duration-500">
             <span>
               <BiShoppingBag className="w-6 h-6" />
             </span>

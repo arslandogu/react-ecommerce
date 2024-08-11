@@ -2,13 +2,17 @@ import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import { MdOutlineStar } from "react-icons/md";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../redux/homeSlice";
 function Product() {
   const [details, setDetails] = useState({});
   const location = useLocation();
-
+  const [qty, setQty] = useState(1);
+  const dispatch = useDispatch();
   useEffect(() => {
     setDetails(location.state.item);
   }, [location.state.item]);
+
   return (
     <div>
       <div className="max-w-screen-xl mx-auto my-10 flex gap-10">
@@ -49,21 +53,34 @@ function Product() {
             <div className="w-52 items-center flex justify-between p-3 border rounded-md">
               <p className="text-sm">Quantity</p>
               <div className="flex items-center gap-3 text-md font-semibold">
-                <button className="bg-white border w-8 h-7 px-2 rounded-2xl hover:bg-black text-black hover:text-white duration-300">
+                <button onClick={()=>qty !== 1 && setQty(qty - 1)} className="bg-white  flex items-center justify-center border w-8 h-7 px-2 rounded-2xl hover:bg-black text-black hover:text-white duration-300">
                   -
                 </button>
-                <span>{1}</span>
-                <button className="bg-white border w-8 h-7 px-2 rounded-2xl hover:bg-black text-black hover:text-white duration-300">
+                <span>{qty}</span>
+                <button onClick={()=>setQty(qty + 1)} className="bg-white border w-8 h-7 flex items-center justify-center px-2 rounded-2xl hover:bg-black text-black hover:text-white duration-300">
                   +
                 </button>
               </div>
             </div>
-                      <div className="py-2 flex items-end justify-start">
-                          {/* Click izleme ekle, click tetiklenmesine animasyon ekle  */}
+            <div className="py-2 flex items-end justify-start">
+              {/* Click izleme ekle, click tetiklenmesine animasyon ekle  */}
               <div className="mt-3">
-                <button className="bg-gray-900 duration-300 hover:bg-gray-800 rounded-lg px-3 py-2 text-white border">Add to Cart</button>
+                <button onClick={() => dispatch(addToCart({
+                  _id: details._id,
+                  title: details.title,
+                  image: details.image,
+                  price: details.price,
+                  quantity: qty,
+                  description:details.description
+                }))} className="bg-gray-900 duration-300 hover:bg-gray-800 rounded-lg px-3 py-2 text-white border">
+                  Add to Cart
+                </button>
               </div>
             </div>
+            <p className="text-base text-gray-500">
+              Category:{" "}
+              <span className="font-medium text-white capitalize">{details.category}</span>
+            </p>
           </div>
         </div>
       </div>
