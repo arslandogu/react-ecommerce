@@ -4,6 +4,7 @@ import { useState } from "react";
 import { MdOutlineStar } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/homeSlice";
+import { ToastContainer, toast } from "react-toastify";
 function Product() {
   const [details, setDetails] = useState({});
   const location = useLocation();
@@ -53,11 +54,17 @@ function Product() {
             <div className="w-52 items-center flex justify-between p-3 border rounded-md">
               <p className="text-sm">Quantity</p>
               <div className="flex items-center gap-3 text-md font-semibold">
-                <button onClick={()=>qty !== 1 && setQty(qty - 1)} className="bg-white  flex items-center justify-center border w-8 h-7 px-2 rounded-2xl hover:bg-black text-black hover:text-white duration-300">
+                <button
+                  onClick={() => qty !== 1 && setQty(qty - 1)}
+                  className="bg-white  flex items-center justify-center border w-8 h-7 px-2 rounded-2xl hover:bg-black text-black hover:text-white duration-300"
+                >
                   -
                 </button>
                 <span>{qty}</span>
-                <button onClick={()=>setQty(qty + 1)} className="bg-white border w-8 h-7 flex items-center justify-center px-2 rounded-2xl hover:bg-black text-black hover:text-white duration-300">
+                <button
+                  onClick={() => setQty(qty + 1)}
+                  className="bg-white border w-8 h-7 flex items-center justify-center px-2 rounded-2xl hover:bg-black text-black hover:text-white duration-300"
+                >
                   +
                 </button>
               </div>
@@ -65,23 +72,44 @@ function Product() {
             <div className="py-2 flex items-end justify-start">
               {/* Click izleme ekle, click tetiklenmesine animasyon ekle  */}
               <div className="mt-3">
-                <button onClick={() => dispatch(addToCart({
-                  _id: details._id,
-                  title: details.title,
-                  image: details.image,
-                  price: details.price,
-                  quantity: qty,
-                  description:details.description
-                }))} className="bg-gray-900 duration-300 hover:bg-gray-800 rounded-lg px-3 py-2 text-white border">
+                <button
+                  onClick={() =>
+                    dispatch(
+                      addToCart({
+                        _id: details._id,
+                        title: details.title,
+                        image: details.image,
+                        price: details.price,
+                        quantity: qty,
+                        description: details.description,
+                      })
+                    ) & toast.success(`${details.title} is added`)
+                  }
+                  className="bg-gray-900 duration-300 hover:bg-gray-800 rounded-lg px-3 py-2 text-white border"
+                >
                   Add to Cart
                 </button>
               </div>
             </div>
             <p className="text-base text-gray-500">
               Category:{" "}
-              <span className="font-medium text-white capitalize">{details.category}</span>
+              <span className="font-medium text-white capitalize">
+                {details.category}
+              </span>
             </p>
           </div>
+      <ToastContainer
+        position="top-left"
+        autoClose={2000}
+        hideProgressBar={false}
+        closeOnClick
+        newestOnTop={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
         </div>
       </div>
     </div>

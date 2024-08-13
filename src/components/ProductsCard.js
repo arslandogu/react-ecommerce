@@ -3,6 +3,8 @@ import { BiShoppingBag } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import { addToCart } from "../redux/homeSlice";
 import { useDispatch } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+
 function ProductsCard({ product }) {
   const navigate = useNavigate();
   const _id = product.title;
@@ -45,7 +47,7 @@ function ProductsCard({ product }) {
             price: product.price,
             quantity: 1,
             description:product.description
-          }))} className="absolute z-20 w-[100px] flex items-center gap-1 top-0 right-0 text-gray-500 hover:text-black transform -translate-x-6 group-hover:translate-x-0 transition-transform cursor-pointer py-1 duration-500">
+          })) & toast.success(`${product.title} is added`)} className="absolute z-20 w-[100px] flex items-center gap-1 top-0 right-0 text-gray-500 hover:text-black transform -translate-x-6 group-hover:translate-x-0 transition-transform cursor-pointer py-1 duration-500">
             <span>
               <BiShoppingBag className="w-6 h-6" />
             </span>
@@ -59,6 +61,18 @@ function ProductsCard({ product }) {
           {product.isNew && <p className="bg-black rounded-tl-xl rounded-bl-2xl text-white font-semibold font-titleFont px-6 py-1">Sale</p>}
           </div>
       </div>
+      <ToastContainer
+        position="top-left"
+        autoClose={2000}
+        hideProgressBar={false}
+        closeOnClick
+        newestOnTop={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </div>
   );
 }

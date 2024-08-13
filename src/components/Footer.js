@@ -7,8 +7,8 @@ import { BsPaypal } from "react-icons/bs";
 import { CiDeliveryTruck } from "react-icons/ci";
 function Footer() {
   return (
-    <div className="bg-black text-white py-16 justify-between font-titleFont">
-      <div className=" mx-auto max-w-screen-xl grid grid-cols-3">
+    <div className="bg-black p-6 text-white py-16 justify-between font-titleFont">
+      <div className="mx-auto max-w-screen-xl grid grid-cols-3">
         <div className="flex flex-col gap-6">
           <img src={logo} alt="logo" className="w-32 rounded-2xl" />
           <p className="text-white text-md tracking-wide">© Free</p>
