@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { decrementQuantity, incrementQuantity } from "../redux/homeSlice";
-
+import { decrementQuantity, deleteCart, incrementQuantity } from "../redux/homeSlice";
+import {MdOutlineClose } from "react-icons/md";
 function ShoppingCartItem({ props }) {
   const dispatch = useDispatch();
 
@@ -18,11 +18,18 @@ function ShoppingCartItem({ props }) {
           key={item._id}
           className="text-center grid grid-cols-4 justify-between p-3 items-center"
         >
-          <div className="p-2 flex items-center justify-center">
-            <img src={item.image} alt="productImg" width={"150px"} />
+          <div className="p-2 grid grid-cols-[1fr,5fr] gap-5 items-center justify-center">
+          <div onClick={()=>dispatch(deleteCart(item._id))} className="items-center flex cursor-pointer justify-start">
+            <MdOutlineClose className="w-6 h-6" />
+            </div>
+            <div className="flex items-center justify-center">
+            <img className="rounded-lg" src={item.image} alt="productImg" width={"150px"} />
+              </div>
           </div>
-          <div className="text-center">{item.title}</div>
-          <div className="text-center">{item.price * item.quantity}</div>
+          <div className="text-center font-bodyFont">{item.title}</div>
+          <div className="text-center font-semibold">
+            ${item.price * item.quantity}
+          </div>
           <div className="flex items-center justify-center gap-3 text-md font-semibold">
             <button
               onClick={() => {

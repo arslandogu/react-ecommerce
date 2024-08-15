@@ -10,13 +10,15 @@ import {
 import Cart from "./pages/Cart";
 import { productsData } from "./api/Api";
 import Product from "./components/Product";
-
+import Login from "./pages/Login";
 const Layout = () => {
   return (
-    <div>
+    <div className="min-h-screen flex flex-col">
       <Header />
-      <ScrollRestoration/>
-      <Outlet/>
+      <div className="flex-grow">
+      <ScrollRestoration />
+      <Outlet />
+      </div>
       <Footer />
     </div>
   );
@@ -30,16 +32,20 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader:productsData
+        loader: productsData,
       },
       {
-        path: '/product/:id',
-        element:<Product/>
+        path: "/product/:id",
+        element: <Product />,
       },
       {
-        path: '/cart',
-        element:<Cart/>
+        path: "/cart",
+        element: <Cart />,
       },
+      {
+        path: "/login",
+        element:<Login/>,
+      }
     ],
   },
 ]);
@@ -47,7 +53,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <div className="font-bodyFont">
-      <RouterProvider router={router}/>
+      <RouterProvider router={router} />
     </div>
   );
 }

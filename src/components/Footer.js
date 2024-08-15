@@ -7,10 +7,10 @@ import { BsPaypal } from "react-icons/bs";
 import { CiDeliveryTruck } from "react-icons/ci";
 function Footer() {
   return (
-    <div className="bg-black p-6 text-white py-16 justify-between font-titleFont">
-      <div className="mx-auto max-w-screen-xl grid grid-cols-3">
+    <footer className="bg-black p-6 rounded-tl-lg rounded-tr-lg text-white py-16 justify-between font-titleFont">
+      <div className="mx-auto ml-0 sm:flex justify-evenly max-w-screen-2xl grid grid-cols-2 gap-7">
         <div className="flex flex-col gap-6">
-          <img src={logo} alt="logo" className="w-32 rounded-2xl" />
+          <img src={logo} alt="logo" className="sm:w-32 rounded-2xl w-20" />
           <p className="text-white text-md tracking-wide">© Free</p>
           <img src={payment} alt="logo" className="w-72 rounded-2xl" />
           <div className="text-gray-500 text-[28px] cursor-pointer flex gap-4">
@@ -25,7 +25,7 @@ function Footer() {
             <p>Phone: +90 5555555555</p>
           </div>
         </div>
-        <div>
+        <div className="flex flex-col">
           <h2 className="text-2xl font-semibold text-white mb-4">Profile</h2>
           <div className="text-base text-[15px] flex flex-col gap-4">
             <p className="flex items-center gap-3 cursor-pointer text-gray-400 hover:text-white duration-300">
@@ -49,7 +49,7 @@ function Footer() {
           </div>
         </div>
       </div>
-    </div>
+    </footer>
   );
 }
 
