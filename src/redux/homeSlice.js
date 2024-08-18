@@ -45,8 +45,14 @@ export const homeSlice = createSlice({
         item.quantity--;
       }
     },
+    addUser: (state, action) => {
+      state.userInfo = action.payload;
+    },
+    removeUser: (state, action) => {
+      state.userInfo = null;
+    }
   },
 });
 
-export const { addToCart, deleteCart, resetCart,incrementQuantity,decrementQuantity } = homeSlice.actions;
+export const { addToCart, deleteCart, resetCart,incrementQuantity,decrementQuantity,addUser,removeUser } = homeSlice.actions;
 export default homeSlice.reducer;

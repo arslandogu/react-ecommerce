@@ -10,7 +10,7 @@ function Products({ products }) {
         </h1>
         <span className="w-20 h-[3px] bg-black" />
       </div>
-      <div className="max-w-screen-xl mx-auto py-10 grid grid-cols-4 gap-10">
+      <div className="max-w-screen-xl mx-auto sm:py-10 py-5 grid sm:grid-cols-4 grid-cols-2 px-3 gap-8 sm:gap-10">
         {products.map((productItem) => (
           <ProductsCard product={productItem} key={productItem._id} />
         ))}

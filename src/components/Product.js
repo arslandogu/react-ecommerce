@@ -33,10 +33,10 @@ function Product() {
         </div>
         <div className="w-3/5 flex flex-col justify-center gap-12">
           <div>
-            <h2 className="text-4xl font-semibold">{details.title}</h2>
+            <h2 className="text-4xl font-semibold mb-2">{details.title}</h2>
             <div>
               <p className="line-through text-gray-400">${details.oldPrice}</p>
-              <p className="font-semibold text-[20px]">${details.price}</p>
+              <p className="font-semibold text-[22px]">${details.price}</p>
             </div>
           </div>
           <div className="flex items-center gap-2 text-base">
@@ -93,7 +93,7 @@ function Product() {
             </div>
             <p className="text-base text-gray-500">
               Category:{" "}
-              <span className="font-medium text-white capitalize">
+              <span className="font-medium text-black capitalize">
                 {details.category}
               </span>
             </p>
